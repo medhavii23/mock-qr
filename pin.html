@@ -3,68 +3,103 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Enter UPI PIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>GPay Demo: Enter PIN</title>
     <style>
         body {
             background: #17181A;
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        .card {
+            width: 95vw;
+            max-width: 340px;
             background: #232327;
-            border-radius: 18px;
-            width: 340px;
-            padding: 28px 24px 32px 24px;
-            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.48);
+            padding: 33px 16px 23px 16px;
             color: #fff;
             text-align: center;
         }
 
-        .upi-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 4px;
-            letter-spacing: 0.2px;
+        .bank-row {
+            font-size: 12px;
+            color: #a4c5f7;
+            text-align: left;
+            margin-bottom: 2px;
+            margin-left: 12px;
         }
 
-        .receiver-section {
-            margin-bottom: 21px;
-            color: #bbb;
+        .top-row {
             font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            color: #9bf4c8;
         }
 
-        .amount-section {
-            font-size: 19px;
-            margin-bottom: 12px;
-            color: #81e895;
+        .to-row {
+            font-size: 14px;
+            color: #fff;
+            text-align: left;
+            margin-bottom: 3px;
+            margin-left: 12px;
+        }
+
+        .amt-row {
+            font-size: 16px;
+            color: #9bf4c8;
+            margin-bottom: 16px;
             font-weight: 600;
+            text-align: left;
+            margin-left: 12px;
         }
 
-        .pin-input {
-            width: 70%;
-            text-align: center;
+        .pin-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #bfd7ff;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .pin-dots {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 14px;
+            gap: 30px;
+        }
+
+        .dot {
+            width: 16px;
+            height: 4px;
+            background: #555;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        input[type="password"] {
+            width: 90%;
             font-size: 30px;
-            letter-spacing: 14px;
+            text-align: center;
             border: none;
             border-bottom: 2px solid #47b14e;
             background: none;
-            color: #dadada;
+            color: #fff;
             outline: none;
-            margin: 16px 0 24px 0;
-            padding: 8px 0 8px 20px;
+            letter-spacing: 20px;
+            padding: 8px 0;
+            margin-bottom: 10px;
         }
 
         .warn {
-            background: #ffedb7;
+            font-size: 12px;
             color: #e69e16;
-            font-size: 14px;
+            background: #ffedb7;
             border-radius: 6px;
             padding: 8px;
             margin-bottom: 18px;
@@ -72,36 +107,38 @@
             display: inline-block;
         }
 
-        .proceed-btn {
-            background: linear-gradient(90deg, #4caf50 60%, #388e3c 100%);
+        .btn {
+            width: 100%;
+            background: #47b14e;
             color: #fff;
-            font-size: 19px;
+            font-size: 20px;
+            font-weight: 500;
             border: none;
-            border-radius: 11px;
+            border-radius: 12px;
             padding: 13px;
-            width: 85%;
-            font-weight: bold;
+            margin-top: 15px;
             cursor: pointer;
-            transition: background 0.2s;
+            box-shadow: 0 3px 10px #47b14e33;
         }
 
-        .proceed-btn:hover {
+        .btn:active {
             background: #388e3c;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="upi-title">Enter 4-DIGIT UPI PIN</div>
-        <div class="receiver-section">
-            Ms Sanjana Shankar<br>Sending: ₹<span id="amt"></span>
-        </div>
+    <div class="card">
+        <div class="bank-row">City Union Bank XXXX0462</div>
+        <div class="top-row">ENTER 4-DIGIT UPI PIN</div>
+        <div class="to-row">To: Ms Sanjana Shankar</div>
+        <div class="amt-row">Sending: ₹<span id="amt"></span></div>
         <form id="pinForm">
-            <input type="password" maxlength="4" id="pin" class="pin-input" pattern="\d{4}" placeholder="●●●●" required
-                autofocus />
-            <div class="warn">You are transferring money to Ms Sanjana Shankar</div>
-            <button type="submit" class="proceed-btn">&#10003;</button>
+            <input type="password" maxlength="4" id="pin" pattern="\d{4}" required autofocus autocomplete="off" />
+            <div class="warn">
+                You are transferring money from your account to Ms Sanjana Shankar
+            </div>
+            <button type="submit" class="btn">&#10003;</button>
         </form>
     </div>
     <script>
@@ -109,10 +146,7 @@
         document.getElementById('pinForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const pin = document.getElementById('pin').value;
-            if (!/^\d{4}$/.test(pin)) {
-                alert('Please enter a valid 4-digit PIN');
-                return;
-            }
+            if (!/^\d{4}$/.test(pin)) { alert('Enter valid 4-digit PIN'); return; }
             window.location.href = 'processing.html';
         });
     </script>
