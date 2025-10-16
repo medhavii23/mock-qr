@@ -4,34 +4,117 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Enter Amount</title>
+    <title>Pay - Enter Amount</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        input,
-        button {
-            font-size: 1.2em;
-            padding: 8px;
-            margin-top: 10px;
+            background: #17181A;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 300px;
-            margin: auto;
+            background: #232327;
+            border-radius: 18px;
+            width: 340px;
+            padding: 32px 24px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            color: #fff;
+            text-align: center;
+        }
+
+        .profile-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #31313b;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .pay-text {
+            font-size: 17px;
+            margin-bottom: 4px;
+            color: #e0e0e0;
+            font-weight: 500;
+        }
+
+        .receiver-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+            color: #fff;
+        }
+
+        .phone {
+            font-size: 15px;
+            color: #bbb;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .amount-input {
+            font-size: 34px;
+            width: 80%;
+            text-align: center;
+            background: none;
+            border: none;
+            border-bottom: 2px solid #555;
+            color: #fff;
+            margin-bottom: 16px;
+            outline: none;
+            padding: 8px 0;
+            letter-spacing: 2px;
+        }
+
+        .amount-input:focus {
+            border-bottom: 2px solid #47b14e;
+        }
+
+        .note {
+            font-size: 15px;
+            color: #8ae68e;
+            margin-bottom: 12px;
+        }
+
+        .proceed-btn {
+            background: linear-gradient(90deg, #4caf50 60%, #388e3c 100%);
+            color: #fff;
+            font-size: 19px;
+            border: none;
+            border-radius: 11px;
+            padding: 13px;
+            width: 85%;
+            font-weight: bold;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .proceed-btn:hover {
+            background: linear-gradient(90deg, #388e3c 60%, #4caf50 100%);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>Enter Amount</h2>
+        <div class="profile-circle">🟢</div>
+        <div class="pay-text">Paying Ms Sanjana Shankar</div>
+        <div class="receiver-name">Ms Sanjana Shankar</div>
+        <div class="phone">+91 93422 74348</div>
         <form id="amountForm">
-            <input type="number" id="amount" placeholder="Enter amount" min="1" required />
-            <br />
-            <button type="submit">Proceed</button>
+            <input type="number" id="amount" class="amount-input" placeholder="₹ 0" min="1" required autofocus />
+            <div class="note">Add note</div>
+            <button type="submit" class="proceed-btn">→</button>
         </form>
     </div>
     <script>
