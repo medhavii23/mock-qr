@@ -3,76 +3,86 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pay - Enter Amount</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>GPay Demo: Enter Amount</title>
     <style>
         body {
             background: #17181A;
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        .card {
+            width: 95vw;
+            max-width: 340px;
             background: #232327;
-            border-radius: 18px;
-            width: 340px;
-            padding: 32px 24px;
-            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.48);
+            padding: 32px 16px 25px 16px;
             color: #fff;
             text-align: center;
         }
 
-        .profile-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
+        .circle {
             background: #31313b;
-            margin: 0 auto 20px auto;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin: 0 auto 13px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 27px;
         }
 
-        .pay-text {
+        .desc {
+            font-size: 15px;
+            margin-bottom: 3px;
+            color: #9bf4c8;
+        }
+
+        .name {
             font-size: 17px;
-            margin-bottom: 4px;
-            color: #e0e0e0;
-            font-weight: 500;
-        }
-
-        .receiver-name {
-            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 12px;
-            letter-spacing: 0.3px;
             color: #fff;
+            margin-bottom: 7px;
         }
 
         .phone {
-            font-size: 15px;
+            font-size: 14px;
             color: #bbb;
-            margin-bottom: 18px;
-            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .amt-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .amt-icon {
+            font-size: 35px;
+            color: #bfd7ff;
+            margin-right: 7px;
         }
 
         .amount-input {
-            font-size: 34px;
-            width: 80%;
-            text-align: center;
+            font-size: 35px;
+            width: 60%;
+            text-align: left;
             background: none;
             border: none;
             border-bottom: 2px solid #555;
             color: #fff;
-            margin-bottom: 16px;
             outline: none;
-            padding: 8px 0;
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
+            right: 0;
+            padding: 5px 0 2px 0;
         }
 
         .amount-input:focus {
@@ -80,51 +90,51 @@
         }
 
         .note {
-            font-size: 15px;
-            color: #8ae68e;
-            margin-bottom: 12px;
+            font-size: 13px;
+            color: #9bf4c8;
+            margin-bottom: 10px;
         }
 
-        .proceed-btn {
-            background: linear-gradient(90deg, #4caf50 60%, #388e3c 100%);
+        .btn {
+            width: 100%;
+            background: #47b14e;
             color: #fff;
-            font-size: 19px;
+            font-size: 20px;
+            font-weight: 500;
             border: none;
-            border-radius: 11px;
-            padding: 13px;
-            width: 85%;
-            font-weight: bold;
-            margin-top: 18px;
+            border-radius: 13px;
+            padding: 15px;
+            margin-top: 17px;
+            box-shadow: 0 3px 10px #47b14e33;
             cursor: pointer;
-            transition: background 0.2s;
         }
 
-        .proceed-btn:hover {
-            background: linear-gradient(90deg, #388e3c 60%, #4caf50 100%);
+        .btn:active {
+            background: #388e3c;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="profile-circle">🟢</div>
-        <div class="pay-text">Paying Ms Sanjana Shankar</div>
-        <div class="receiver-name">Ms Sanjana Shankar</div>
+    <div class="card">
+        <div class="circle">🟢</div>
+        <div class="desc">Paying Ms Sanjana Shankar</div>
+        <div class="name">Ms Sanjana Shankar</div>
         <div class="phone">+91 93422 74348</div>
         <form id="amountForm">
-            <input type="number" id="amount" class="amount-input" placeholder="₹ 0" min="1" required autofocus />
+            <div class="amt-row">
+                <span class="amt-icon">&#8377;</span>
+                <input type="number" id="amount" class="amount-input" placeholder="0" min="1" required autofocus />
+            </div>
             <div class="note">Add note</div>
-            <button type="submit" class="proceed-btn">→</button>
+            <button type="submit" class="btn">&#8594;</button>
         </form>
     </div>
     <script>
         document.getElementById('amountForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const amount = document.getElementById('amount').value;
-            if (amount < 1) {
-                alert('Please enter a valid amount');
-                return;
-            }
+            if (amount < 1) { alert('Enter valid amount'); return; }
             localStorage.setItem('dummyAmount', amount);
             window.location.href = 'pin.html';
         });
