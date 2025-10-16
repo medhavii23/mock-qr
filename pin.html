@@ -4,37 +4,108 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Enter PIN</title>
+    <title>Enter UPI PIN</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        input,
-        button {
-            font-size: 1.2em;
-            padding: 8px;
-            margin-top: 10px;
+            background: #17181A;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 300px;
-            margin: auto;
+            background: #232327;
+            border-radius: 18px;
+            width: 340px;
+            padding: 28px 24px 32px 24px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            color: #fff;
+            text-align: center;
+        }
+
+        .upi-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            letter-spacing: 0.2px;
+        }
+
+        .receiver-section {
+            margin-bottom: 21px;
+            color: #bbb;
+            font-size: 16px;
+        }
+
+        .amount-section {
+            font-size: 19px;
+            margin-bottom: 12px;
+            color: #81e895;
+            font-weight: 600;
+        }
+
+        .pin-input {
+            width: 70%;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 14px;
+            border: none;
+            border-bottom: 2px solid #47b14e;
+            background: none;
+            color: #dadada;
+            outline: none;
+            margin: 16px 0 24px 0;
+            padding: 8px 0 8px 20px;
+        }
+
+        .warn {
+            background: #ffedb7;
+            color: #e69e16;
+            font-size: 14px;
+            border-radius: 6px;
+            padding: 8px;
+            margin-bottom: 18px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .proceed-btn {
+            background: linear-gradient(90deg, #4caf50 60%, #388e3c 100%);
+            color: #fff;
+            font-size: 19px;
+            border: none;
+            border-radius: 11px;
+            padding: 13px;
+            width: 85%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .proceed-btn:hover {
+            background: #388e3c;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>Enter PIN</h2>
+        <div class="upi-title">Enter 4-DIGIT UPI PIN</div>
+        <div class="receiver-section">
+            Ms Sanjana Shankar<br>Sending: ₹<span id="amt"></span>
+        </div>
         <form id="pinForm">
-            <input type="password" id="pin" placeholder="Enter 4-digit PIN" pattern="\d{4}" required />
-            <br />
-            <button type="submit">Submit</button>
+            <input type="password" maxlength="4" id="pin" class="pin-input" pattern="\d{4}" placeholder="●●●●" required
+                autofocus />
+            <div class="warn">You are transferring money to Ms Sanjana Shankar</div>
+            <button type="submit" class="proceed-btn">&#10003;</button>
         </form>
     </div>
     <script>
+        document.getElementById('amt').textContent = localStorage.getItem('dummyAmount') || '0';
         document.getElementById('pinForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const pin = document.getElementById('pin').value;
@@ -42,7 +113,7 @@
                 alert('Please enter a valid 4-digit PIN');
                 return;
             }
-            window.location.href = 'success.html';
+            window.location.href = 'processing.html';
         });
     </script>
 </body>
