@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Processing Payment</title>
+    <style>
+        body {
+            background: #17181A;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #232327;
+            border-radius: 18px;
+            width: 320px;
+            padding: 55px 24px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .loader {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: #47b14e;
+            margin: 0 7px;
+            animation: bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(1.35);
+            }
+        }
+
+        .processing-text {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #8ae68e;
+            margin-bottom: 9px;
+        }
+
+        .name {
+            font-size: 19px;
+            color: #91d4f7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="processing-text">
+            Paying ₹<span id="amt"></span> securely to
+        </div>
+        <div class="name">Sanjana Shankar</div>
+    </div>
+    <script>
+        document.getElementById('amt').textContent = localStorage.getItem('dummyAmount') || '0';
+        setTimeout(function () {
+            window.location.href = 'success.html';
+        }, 2500); // 2.5 seconds loading effect
+    </script>
+</body>
+
+</html>
