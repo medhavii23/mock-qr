@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enter PIN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input,
+        button {
+            font-size: 1.2em;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Enter PIN</h2>
+        <form id="pinForm">
+            <input type="password" id="pin" placeholder="Enter 4-digit PIN" pattern="\d{4}" required />
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('pinForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const pin = document.getElementById('pin').value;
+            if (!/^\d{4}$/.test(pin)) {
+                alert('Please enter a valid 4-digit PIN');
+                return;
+            }
+            window.location.href = 'success.html';
+        });
+    </script>
+</body>
+
+</html>
