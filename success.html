@@ -3,70 +3,67 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Payment Success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Paid - Success</title>
     <style>
         body {
             background: #17181A;
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
-        .container {
+        .card {
+            width: 95vw;
+            max-width: 340px;
             background: #232327;
-            border-radius: 18px;
-            width: 340px;
-            padding: 40px 24px 36px 24px;
-            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.48);
+            padding: 46px 16px 35px 16px;
             color: #fff;
             text-align: center;
             position: relative;
         }
 
         .check-circle {
-            width: 62px;
-            height: 62px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            margin: 0 auto 9px auto;
             background: #7e59fa;
+            margin: 0 auto 14px auto;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 38px;
+            justify-content: center;
+            font-size: 36px;
             color: #fff;
-            position: relative;
-            box-shadow: 0 2px 10px #6f6bc729;
         }
 
-        .rupee {
-            font-size: 28px;
+        .amt {
+            font-size: 27px;
             color: #8ae68e;
             font-weight: bold;
-            margin-bottom: 3px;
+            margin-bottom: 7px;
         }
 
-        .paid-text {
+        .paid {
             font-size: 17px;
             font-weight: 600;
             color: #bfd7ff;
-            margin-bottom: 4px;
-            margin-top: 10px;
+            margin-bottom: 3px;
         }
 
         .name {
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 12px;
             color: #fff;
+            margin-bottom: 9px;
         }
 
-        .mini-note {
-            font-size: 12px;
+        .bank-row {
+            font-size: 13px;
             color: #aaffd4;
             margin-bottom: 6px;
         }
@@ -80,12 +77,12 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="card">
         <div class="check-circle">&#10003;</div>
-        <div class="rupee">₹<span id="amt"></span></div>
-        <div class="paid-text">Paid to</div>
+        <div class="amt">₹<span id="amt"></span></div>
+        <div class="paid">Paid to</div>
         <div class="name">Sanjana Shankar</div>
-        <div class="mini-note">Banking name: Ms Sanjana Shankar</div>
+        <div class="bank-row">Banking name: Ms Sanjana Shankar</div>
         <div class="datetime" id="datetime"></div>
     </div>
     <script>
