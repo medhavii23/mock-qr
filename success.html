@@ -4,33 +4,94 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Success</title>
+    <title>Payment Success</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            text-align: center;
+            background: #17181A;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 300px;
-            margin: auto;
+            background: #232327;
+            border-radius: 18px;
+            width: 340px;
+            padding: 40px 24px 36px 24px;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, 0.35);
+            color: #fff;
+            text-align: center;
+            position: relative;
         }
 
-        h2 {
-            color: green;
+        .check-circle {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            margin: 0 auto 9px auto;
+            background: #7e59fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 38px;
+            color: #fff;
+            position: relative;
+            box-shadow: 0 2px 10px #6f6bc729;
+        }
+
+        .rupee {
+            font-size: 28px;
+            color: #8ae68e;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .paid-text {
+            font-size: 17px;
+            font-weight: 600;
+            color: #bfd7ff;
+            margin-bottom: 4px;
+            margin-top: 10px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .mini-note {
+            font-size: 12px;
+            color: #aaffd4;
+            margin-bottom: 6px;
+        }
+
+        .datetime {
+            font-size: 12px;
+            color: #a4c7ee;
+            margin-bottom: 12px;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>Payment Successful!</h2>
-        <p id="message"></p>
+        <div class="check-circle">&#10003;</div>
+        <div class="rupee">₹<span id="amt"></span></div>
+        <div class="paid-text">Paid to</div>
+        <div class="name">Sanjana Shankar</div>
+        <div class="mini-note">Banking name: Ms Sanjana Shankar</div>
+        <div class="datetime" id="datetime"></div>
     </div>
     <script>
-        const amount = localStorage.getItem('dummyAmount') || 'some';
-        document.getElementById('message').textContent = `Successfully debited ₹${amount}`;
+        document.getElementById('amt').textContent = localStorage.getItem('dummyAmount') || '0';
+        const now = new Date();
+        document.getElementById('datetime').textContent = now.toLocaleString('en-IN', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'long', year: 'numeric' });
     </script>
 </body>
 
